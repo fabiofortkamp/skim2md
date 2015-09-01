@@ -19,6 +19,6 @@ A [Pandoc YAML metadata block](http://pandoc.org/README.html#pandocs-markdown) i
 
 Right now, to modify any of these settings, you would have to modify the script itself, which is quite readable.
 
-To mantain a version to be tracked in a dedicated folder and "install" the script, just type `make` (assuming you have it installed); all it does is to compile the script and place the compiled version at `~/Library/Applications/Skim`.
+To mantain a version to be tracked in a dedicated folder and "install" the script, clone this repository type `make install` (assuming you have it installed); all it does is to compile the script and place the compiled version at `~/Library/Scripts/Applications/Skim`. If you wish, you can just drop the text script in this folder.
 
 For accessing the scripts, I like [FastScripts](https://red-sweater.com/fastscripts/). You can also create a service in Automator, or use a macro or launcher program.
