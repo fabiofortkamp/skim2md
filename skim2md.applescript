@@ -83,7 +83,7 @@ title: " & "Notes " & docname & "
 	end tell
 end tell
 
-
+-- write the text to file
 set fileToWrite to notesFolder & zettelID & " " & docname & mdExtension
 
 
@@ -92,10 +92,9 @@ open for access f with write permission
 write stringToWrite as text to f
 close access f
 
+display alert "Documented created: " & fileToWrite
 
-stringToWrite
+-- stringToWrite
 
 --TODO
-
--- * save string to file
 
