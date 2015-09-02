@@ -89,7 +89,7 @@ set fileToWrite to notesFolder & zettelID & " " & docname & mdExtension
 
 set f to a reference to POSIX file fileToWrite
 open for access f with write permission
-write stringToWrite as Unicode text to f
+write stringToWrite as text to f
 close access f
 
 
