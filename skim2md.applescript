@@ -1,14 +1,18 @@
-set stringToWrite to ""
+set stringToWrite to "" as Unicode text
 
 set d to current date
 
-set authorName to "F‡bio Fortkamp"
+set authorName to "F‡bio Fortkamp" as Unicode text
 set dateString to do shell script "date +'%Y-%m-%d'"
 set tagsString to "#paper"
 
 set zettelID to do shell script "date +'%Y%m%d%H%M%S'"
 
-set notesFolder to "~/Dropbox/notes/"
+set homeDir to do shell script "echo $HOME"
+
+set notesFolder to homeDir & "/Dropbox/notes/"
+
+set mdExtension to ".md"
 
 tell application "Skim"
 	
@@ -25,7 +29,7 @@ tell application "Skim"
 		-- strip extension
 		set extension to characters -1 thru -4 of docname as string
 		if extension is ".pdf" then
-			display alert "!"
+			
 			set docname to characters 1 thru -5 of docname as string
 		end if
 		
@@ -55,13 +59,13 @@ title: " & "Notes " & docname & "
 					repeat with noteParagraph in thisNote's text's paragraphs
 						
 						set noteText to " > " & noteParagraph & "
-"
+" as Unicode text
 						
 					end repeat
 					
 				else if thisNote's type is text note or thisNote's type is anchored note then
 					
-					set noteText to thisNote's text
+					set noteText to thisNote's text as Unicode text
 					
 					
 					
@@ -78,9 +82,20 @@ title: " & "Notes " & docname & "
 		
 	end tell
 end tell
+
+
+set fileToWrite to notesFolder & zettelID & " " & docname & mdExtension
+
+
+set f to a reference to POSIX file fileToWrite
+open for access f with write permission
+write stringToWrite as Unicode text to f
+close access f
+
+
 stringToWrite
 
 --TODO
 
 -- * save string to file
--- * where to put it? Service?
+
