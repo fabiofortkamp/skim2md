@@ -1,5 +1,15 @@
 set stringToWrite to ""
 
+set d to current date
+
+set authorName to "F‡bio Fortkamp"
+set dateString to do shell script "date +'%Y-%m-%d'"
+set tagsString to "#paper"
+
+set zettelID to do shell script "date +'%Y%m%d%H%M%S'"
+
+set notesFolder to "~/Dropbox/notes/"
+
 tell application "Skim"
 	
 	tell document 1
@@ -12,8 +22,24 @@ tell application "Skim"
 		
 		set docname to its name
 		
-		set stringToWrite to "Title: " & docname & "
+		-- strip extension
+		set extension to characters -1 thru -4 of docname as string
+		if extension is ".pdf" then
+			display alert "!"
+			set docname to characters 1 thru -5 of docname as string
+		end if
+		
+		
+		
+		set stringToWrite to "---
+title: " & "Notes " & docname & "  
+" & "author: " & authorName & "  
+" & "date: " & dateString & "  
+" & "tags: " & tagsString & "  
+---
 "
+		
+		set fileName to "Notes " & docname
 		
 		repeat with currentPage from firstPage to lastPage
 			
@@ -55,7 +81,6 @@ end tell
 stringToWrite
 
 --TODO
--- * generate metadata - format string?
--- * generate ID
+
 -- * save string to file
 -- * where to put it? Service?
