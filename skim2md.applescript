@@ -9,7 +9,7 @@ set tagsString to "#paper"
 set zettelID to do shell script "date +'%Y%m%d%H%M%S'"
 
 set homeDir to do shell script "echo $HOME"
-
+-- this is where the output will be saved
 set notesFolder to homeDir & "/Dropbox/notes/"
 
 set mdExtension to ".md"
@@ -34,7 +34,7 @@ tell application "Skim"
 		end if
 		
 		
-		
+		-- create YAML metadata block
 		set stringToWrite to "---
 title: " & "Notes " & docname & "  
 " & "author: " & authorName & "  
@@ -45,6 +45,7 @@ title: " & "Notes " & docname & "
 		
 		set fileName to "Notes " & docname
 		
+		-- this loop guarantees the notes are in order
 		repeat with currentPage from firstPage to lastPage
 			
 			set notesList to notes of page currentPage
@@ -86,12 +87,12 @@ end tell
 -- write the text to file
 set fileToWrite to notesFolder & zettelID & " " & docname & mdExtension
 
-
 set f to a reference to POSIX file fileToWrite
 open for access f with write permission
 write stringToWrite as text to f
 close access f
 
+-- notification
 display alert "Documented created: " & fileToWrite
 
 -- stringToWrite
