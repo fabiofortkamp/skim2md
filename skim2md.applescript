@@ -64,9 +64,13 @@ title: " & "Notes " & docname & "
 						
 					end repeat
 					
-				else if thisNote's type is text note or thisNote's type is anchored note then
+				else if thisNote's type is text note then
 					
-					set noteText to thisNote's text as Unicode text
+					set noteText to (thisNote's text) as Unicode text
+					
+				else if thisNote's type is anchored note then
+					
+					set noteText to (thisNote's text & " - " & thisNote's extended text) as Unicode text
 					
 					
 					
