@@ -85,7 +85,7 @@ title: " & "Notes " & docname & "
 end tell
 
 -- write the text to file
-set fileToWrite to notesFolder & zettelID & " " & docname & mdExtension
+set fileToWrite to notesFolder & zettelID & " Notes " & docname & mdExtension
 
 set f to a reference to POSIX file fileToWrite
 open for access f with write permission
