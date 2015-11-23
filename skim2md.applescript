@@ -4,7 +4,8 @@ set d to current date
 
 set authorName to "F‡bio Fortkamp" as Unicode text
 set dateString to do shell script "date +'%Y-%m-%d'"
-set tagsString to "#paper"
+set tagsString to "[#paper, #phd, #magref]"
+set bibString to "Thermo-Foam-Ref.bib"
 
 set zettelID to do shell script "date +'%Y%m%d%H%M%S'"
 
@@ -40,6 +41,8 @@ title: " & "Notes " & docname & "
 " & "author: " & authorName & "  
 " & "date: " & dateString & "  
 " & "tags: " & tagsString & "  
+" & "bibliography: " & bibString & "  
+  
 ---
 "
 		
